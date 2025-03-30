@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin QCM</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 2em; background: #f9f9f9; }
+    .question { margin-bottom: 1.5em; }
+    .answers div { margin: 0.3em 0; padding: 0.5em; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; }
+    .answers .selected { background: #d0e7ff; border-color: #3399ff; }
+    .answers .correct { background: #d4edda; border-color: #28a745; }
+    .answers .wrong { background: #f8d7da; border-color: #dc3545; }
+    .explanation { font-size: 0.9em; color: #666; }
+    button { margin-top: 1em; padding: 0.6em 1.2em; font-size: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Quiz Bitcoin</h1>
+  <div id="quiz"></div>
+  <button onclick="submitQuiz()">Valider</button>  <script>
+    const questions = [
+      {
+        text: "Quelle est la quantité maximale de bitcoins ?",
+        options: ["10 millions", "21 millions", "100 millions", "Illimitée"],
+        answer: 1,
+        explanation: "Il y aura au maximum 21 millions de bitcoins, codés dans le protocole."
+      },
+      {
+        text: "Qui a créé le Bitcoin ?",
+        options: ["Vitalik Buterin", "Elon Musk", "Satoshi Nakamoto", "Charlie Lee"],
+        answer: 2,
+        explanation: "Bitcoin a été créé par Satoshi Nakamoto en 2008."
+      },
+      {
+        text: "Qu'est-ce que le halving Bitcoin ?",
+        options: ["Un crash", "Un arrêt du réseau", "Une réduction des récompenses", "Couper un bitcoin en deux"],
+        answer: 2,
+        explanation: "Le halving réduit de moitié la récompense minière tous les 210 000 blocs."
+      }
+    ];
+
+    let userAnswers = Array(questions.length).fill(null);
+    let submitted = false;
+
+    const quizDiv = document.getElementById('quiz');
+
+    function renderQuiz() {
+      quizDiv.innerHTML = '';
+      questions.forEach((q, qi) => {
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question';
+
+        const title = document.createElement('p');
+        title.innerHTML = `<strong>Q${qi + 1}:</strong> ${q.text}`;
+        qDiv.appendChild(title);
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'answers';
+
+        q.options.forEach((opt, oi) => {
+          const optDiv = document.createElement('div');
+          optDiv.textContent = opt;
+
+          if (userAnswers[qi] === oi) optDiv.classList.add('selected');
+          if (submitted && q.answer === oi) optDiv.classList.add('correct');
+          if (submitted && userAnswers[qi] === oi && oi !== q.answer) optDiv.classList.add('wrong');
+
+          optDiv.onclick = () => {
+            if (submitted) return;
+            userAnswers[qi] = oi;
+            renderQuiz();
+          };
+
+          optionsDiv.appendChild(optDiv);
+        });
+
+        qDiv.appendChild(optionsDiv);
+
+        if (submitted) {
+          const expl = document.createElement('div');
+          expl.className = 'explanation';
+          expl.textContent = `Explication: ${q.explanation}`;
+          qDiv.appendChild(expl);
+        }
+
+        quizDiv.appendChild(qDiv);
+      });
+    }
+
+    function submitQuiz() {
+      if (userAnswers.includes(null)) {
+        alert("Merci de répondre à toutes les questions.");
+        return;
+      }
+      submitted = true;
+      renderQuiz();
+    }
+
+    renderQuiz();
+  </script></body>
+</html>
