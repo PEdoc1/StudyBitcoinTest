@@ -71,10 +71,39 @@
     <div id="progress-bar"></div>
   </div>
   <form id="quizForm"></form>
-  <button onclick="submitQuiz()">Valider le test</button>
+  <button onclick="submitQuiz(); return false;">Valider le test</button>
   <div id="result"></div>  <script>
     const quizData = [
-      // ... mêmes 30 questions ici, inchangées pour la lisibilité ...
+      {question: "En quelle année Bitcoin a-t-il été lancé ?", options: ["2005", "2009", "2013", "2017"], answer: [1]},
+      {question: "Qui est considéré comme le créateur de Bitcoin ?", options: ["Vitalik Buterin", "Elon Musk", "Satoshi Nakamoto", "Charles Hoskinson"], answer: [2]},
+      {question: "Quelle est la nature de Bitcoin ?", options: ["Une société cotée en bourse", "Une monnaie numérique décentralisée", "Une carte bancaire", "Une application mobile"], answer: [1]},
+      {question: "Quel est le nombre maximum de bitcoins pouvant exister ?", options: ["Illimité", "100 millions", "21 millions", "1 milliard"], answer: [2]},
+      {question: "Quel outil permet de stocker ses bitcoins ?", options: ["Un coffre bancaire", "Un portefeuille (wallet)", "Une carte SIM", "Un contrat papier"], answer: [1]},
+      {question: "Une transaction Bitcoin est…", options: ["Réversible en cas d’erreur", "Instantanée dans tous les cas", "Visible sur une blockchain publique", "Toujours anonyme et privée"], answer: [2]},
+      {question: "Quel élément est nécessaire pour envoyer des bitcoins ?", options: ["Une connexion Wi-Fi", "Une clé privée", "Une carte d’identité", "Un compte bancaire"], answer: [1]},
+      {question: "Quelle technologie sous-tend Bitcoin ?", options: ["L’intelligence artificielle", "La blockchain", "Le cloud computing", "Le peer-to-peer bancaire"], answer: [1]},
+      {question: "Quel est l’un des objectifs initiaux de Bitcoin ?", options: ["Financer les banques", "Créer un réseau social", "Permettre des paiements sans intermédiaire", "Remplacer Internet"], answer: [2]},
+      {question: "Le Bitcoin fonctionne sans…", options: ["Électricité", "Ordinateur", "Intermédiaire central", "Utilisateur"], answer: [2]},
+      {question: "Les transactions Bitcoin sont :", options: ["Toujours instantanées", "Confirmées par les mineurs", "Traitées par des banques", "Totalement privées"], answer: [1]},
+      {question: "Qu’est-ce qu’un portefeuille Bitcoin ?", options: ["Un compte bancaire", "Un outil de gestion de clés", "Une carte prépayée", "Une application de jeux"], answer: [1]},
+      {question: "Caractéristiques de la blockchain Bitcoin :", options: ["Centralisée", "Transparente", "Inaltérable", "Gérée par une entreprise"], answer: [1,2]},
+      {question: "Le minage permet :", options: ["Créer des bitcoins", "Valider des transactions", "Supprimer des données", "Pirater des portefeuilles"], answer: [0,1]},
+      {question: "Pourquoi Bitcoin est pseudonyme ?", options: ["Les noms sont publics", "Les adresses ne révèlent pas l'identité", "Les transactions sont invisibles", "On change de pseudonyme"], answer: [1]},
+      {question: "Un nœud Bitcoin est :", options: ["Un mineur", "Un ordinateur qui relaie la blockchain", "Un service bancaire", "Une vulnérabilité"], answer: [1]},
+      {question: "Bitcoin est considéré comme réserve de valeur car :", options: ["Offre limitée", "Basé sur l’or", "Indépendant des États", "Inflation contrôlée"], answer: [0,2,3]},
+      {question: "Le halving correspond à :", options: ["Une mise à jour", "Réduction des récompenses", "Baisse de prix", "Changement de protocole"], answer: [1]},
+      {question: "Bitcoin permet :", options: ["Payer", "Accéder à internet", "Envoyer de la valeur", "Faire de la publicité"], answer: [0,2]},
+      {question: "Risques liés à Bitcoin :", options: ["Vol de clés", "Volatilité", "Censure étatique", "Dysfonctionnements de la blockchain"], answer: [0,1,2]},
+      {question: "La signature cryptographique :", options: ["Garantit l’origine", "Chiffre les données", "Évite la double dépense", "Crée les blocs"], answer: [0,2]},
+      {question: "La difficulté de minage ajuste :", options: ["Taille des blocs", "Temps de validation", "Prix", "Énergie consommée"], answer: [1]},
+      {question: "Une attaque 51 % permet :", options: ["Censurer", "Modifier l’offre totale", "Réorganiser la chaîne", "Usurper une identité"], answer: [0,2]},
+      {question: "Un hard fork est :", options: ["Mise à jour", "Scission du réseau", "Bug", "Attaque"], answer: [1]},
+      {question: "Scalabilité de Bitcoin concerne :", options: ["Vitesse", "Frais", "Taille des blocs", "Nombre de mineurs"], answer: [0,1,2]},
+      {question: "Le protocole Bitcoin :", options: ["Open-source", "Modifiable par tous", "Nécessite un consensus", "Géré par une entreprise"], answer: [0,2]},
+      {question: "Le Lightning Network permet :", options: ["Améliorer confidentialité", "Réduire les frais", "Créer des tokens", "Payer off-chain"], answer: [1,3]},
+      {question: "La preuve de travail :", options: ["Résout un problème", "Consomme de l’énergie", "Autorité centrale", "Compétition entre mineurs"], answer: [0,1,3]},
+      {question: "Le prix de Bitcoin dépend :", options: ["Offre/demande", "Banques centrales", "Médias", "Quantité d’or"], answer: [0,1,2]},
+      {question: "Critiques fréquentes :", options: ["Énergie", "Lenteur", "Centralisation", "Volatilité"], answer: [0,1,3]}
     ];
 
     const form = document.getElementById("quizForm");
