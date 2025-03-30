@@ -13,6 +13,20 @@
       text-align: center;
       color: #ff6600;
     }
+    .intro {
+      margin: 20px auto;
+      max-width: 800px;
+      background: #fff3e0;
+      border-left: 5px solid #ff9900;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    .section-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin: 20px 0 10px;
+      color: #cc5500;
+    }
     .question {
       margin-bottom: 20px;
       padding: 10px;
@@ -66,15 +80,24 @@
   </style>
 </head>
 <body>
-  <h1>Test QCM – Compréhension de Bitcoin</h1>
-  <div id="progress-container">
+  <h1>Test QCM – Compréhension de Bitcoin</h1>  <div class="intro">
+    <p><strong>Bienvenue dans ce test de compréhension sur Bitcoin.</strong></p>
+    <p>Ce questionnaire à choix multiples a pour objectif d’évaluer votre niveau de connaissance sur Bitcoin, depuis les bases jusqu’aux aspects plus techniques et économiques.</p>
+    <p>Le test comporte <strong>30 questions</strong>, réparties en trois niveaux :</p>
+    <ul>
+      <li><strong>Débutant</strong> : connaissances générales</li>
+      <li><strong>Intermédiaire</strong> : fonctionnement technique et économique</li>
+      <li><strong>Avancé</strong> : compréhension approfondie et enjeux critiques</li>
+    </ul>
+    <p>Certaines questions ont <strong>plusieurs bonnes réponses</strong>. Prenez le temps de bien lire les propositions avant de valider.</p>
+    <p>À la fin du test, vous obtiendrez votre score ainsi qu’un retour sur vos erreurs.</p>
+  </div>  <div id="progress-container">
     <div id="progress-bar"></div>
-  </div>
-  <form id="quizForm"></form>
+  </div>  <form id="quizForm"></form>
   <button onclick="submitQuiz(); return false;">Valider le test</button>
   <div id="result"></div>  <script>
     const quizData = [
-      {question: "En quelle année Bitcoin a-t-il été lancé ?", options: ["2005", "2009", "2013", "2017"], answer: [1]},
+      {question: "<span class='section-title'>Partie 1 — Niveau Débutant</span><br>En quelle année Bitcoin a-t-il été lancé ?", options: ["2005", "2009", "2013", "2017"], answer: [1]},
       {question: "Qui est considéré comme le créateur de Bitcoin ?", options: ["Vitalik Buterin", "Elon Musk", "Satoshi Nakamoto", "Charles Hoskinson"], answer: [2]},
       {question: "Quelle est la nature de Bitcoin ?", options: ["Une société cotée en bourse", "Une monnaie numérique décentralisée", "Une carte bancaire", "Une application mobile"], answer: [1]},
       {question: "Quel est le nombre maximum de bitcoins pouvant exister ?", options: ["Illimité", "100 millions", "21 millions", "1 milliard"], answer: [2]},
@@ -84,7 +107,8 @@
       {question: "Quelle technologie sous-tend Bitcoin ?", options: ["L’intelligence artificielle", "La blockchain", "Le cloud computing", "Le peer-to-peer bancaire"], answer: [1]},
       {question: "Quel est l’un des objectifs initiaux de Bitcoin ?", options: ["Financer les banques", "Créer un réseau social", "Permettre des paiements sans intermédiaire", "Remplacer Internet"], answer: [2]},
       {question: "Le Bitcoin fonctionne sans…", options: ["Électricité", "Ordinateur", "Intermédiaire central", "Utilisateur"], answer: [2]},
-      {question: "Les transactions Bitcoin sont :", options: ["Toujours instantanées", "Confirmées par les mineurs", "Traitées par des banques", "Totalement privées"], answer: [1]},
+
+      {question: "<span class='section-title'>Partie 2 — Niveau Intermédiaire</span><br>Les transactions Bitcoin sont :", options: ["Toujours instantanées", "Confirmées par les mineurs", "Traitées par des banques", "Totalement privées"], answer: [1]},
       {question: "Qu’est-ce qu’un portefeuille Bitcoin ?", options: ["Un compte bancaire", "Un outil de gestion de clés", "Une carte prépayée", "Une application de jeux"], answer: [1]},
       {question: "Caractéristiques de la blockchain Bitcoin :", options: ["Centralisée", "Transparente", "Inaltérable", "Gérée par une entreprise"], answer: [1,2]},
       {question: "Le minage permet :", options: ["Créer des bitcoins", "Valider des transactions", "Supprimer des données", "Pirater des portefeuilles"], answer: [0,1]},
@@ -94,16 +118,17 @@
       {question: "Le halving correspond à :", options: ["Une mise à jour", "Réduction des récompenses", "Baisse de prix", "Changement de protocole"], answer: [1]},
       {question: "Bitcoin permet :", options: ["Payer", "Accéder à internet", "Envoyer de la valeur", "Faire de la publicité"], answer: [0,2]},
       {question: "Risques liés à Bitcoin :", options: ["Vol de clés", "Volatilité", "Censure étatique", "Dysfonctionnements de la blockchain"], answer: [0,1,2]},
-      {question: "La signature cryptographique :", options: ["Garantit l’origine", "Chiffre les données", "Évite la double dépense", "Crée les blocs"], answer: [0,2]},
-      {question: "La difficulté de minage ajuste :", options: ["Taille des blocs", "Temps de validation", "Prix", "Énergie consommée"], answer: [1]},
-      {question: "Une attaque 51 % permet :", options: ["Censurer", "Modifier l’offre totale", "Réorganiser la chaîne", "Usurper une identité"], answer: [0,2]},
-      {question: "Un hard fork est :", options: ["Mise à jour", "Scission du réseau", "Bug", "Attaque"], answer: [1]},
-      {question: "Scalabilité de Bitcoin concerne :", options: ["Vitesse", "Frais", "Taille des blocs", "Nombre de mineurs"], answer: [0,1,2]},
-      {question: "Le protocole Bitcoin :", options: ["Open-source", "Modifiable par tous", "Nécessite un consensus", "Géré par une entreprise"], answer: [0,2]},
-      {question: "Le Lightning Network permet :", options: ["Améliorer confidentialité", "Réduire les frais", "Créer des tokens", "Payer off-chain"], answer: [1,3]},
-      {question: "La preuve de travail :", options: ["Résout un problème", "Consomme de l’énergie", "Autorité centrale", "Compétition entre mineurs"], answer: [0,1,3]},
-      {question: "Le prix de Bitcoin dépend :", options: ["Offre/demande", "Banques centrales", "Médias", "Quantité d’or"], answer: [0,1,2]},
-      {question: "Critiques fréquentes :", options: ["Énergie", "Lenteur", "Centralisation", "Volatilité"], answer: [0,1,3]}
+
+      {question: "<span class='section-title'>Partie 3 — Niveau Avancé</span><br>Quel est le rôle de la signature cryptographique dans le fonctionnement de Bitcoin ?", options: ["Elle permet de vérifier que la transaction vient bien du détenteur des fonds", "Elle permet de chiffrer le contenu des blocs pour garantir la confidentialité", "Elle rend chaque transaction unique et infalsifiable", "Elle permet de créer de nouveaux blocs sur la blockchain"], answer: [0,2]},
+      {question: "Pourquoi le protocole de Bitcoin ajuste-t-il automatiquement la difficulté de minage ?", options: ["Pour garantir un nombre fixe de transactions par jour", "Pour maintenir un temps moyen de 10 minutes entre chaque bloc, malgré les variations de puissance de calcul", "Pour adapter la taille des blocs à la demande du réseau", "Pour faire varier les frais de transaction en fonction du marché"], answer: [1]},
+      {question: "En quoi consiste une 'attaque des 51 %' dans le contexte du réseau Bitcoin ?", options: ["Un acteur peut empêcher la validation de certaines transactions", "Elle permet de modifier le nombre total de bitcoins en circulation", "L’attaquant peut réorganiser la blockchain à son avantage sur une courte période", "Elle donne la possibilité d’usurper des clés privées"], answer: [0,2]},
+      {question: "Qu'appelle-t-on un 'hard fork' dans l’univers Bitcoin ?", options: ["Une mise à jour automatique du logiciel Bitcoin Core", "Une scission du réseau lorsque des participants adoptent des règles incompatibles", "Un type de malware visant les portefeuilles crypto", "Une procédure destinée à effacer des blocs jugés invalides"], answer: [1]},
+      {question: "Quels sont les principaux défis liés à la scalabilité du réseau Bitcoin ?", options: ["La limitation du nombre de transactions traitables par seconde", "L’augmentation des frais en période de congestion du réseau", "La baisse du nombre de mineurs sur le réseau", "La capacité maximale imposée à la taille des blocs"], answer: [0,1,3]},
+      {question: "À propos du protocole Bitcoin, quelles affirmations sont exactes ?", options: ["Le code est open-source et accessible à tous", "Toute personne peut modifier les règles du protocole à sa guise", "Les évolutions du protocole nécessitent un consensus au sein du réseau", "Le protocole est géré par une entité centrale appelée ‘Bitcoin Foundation’"], answer: [0,2]},
+      {question: "À quoi sert le Lightning Network dans l’écosystème Bitcoin ?", options: ["À réduire les frais et les délais lors de micro-paiements", "À améliorer la confidentialité des transactions sur la blockchain principale", "À créer des tokens compatibles avec Ethereum", "À permettre des échanges instantanés hors chaîne (off-chain)"], answer: [0,3]},
+      {question: "Que signifie le mécanisme de preuve de travail (Proof of Work) utilisé dans Bitcoin ?", options: ["Les mineurs résolvent un problème mathématique complexe pour valider les blocs", "Il permet à une autorité centrale de trier les transactions prioritaires", "Il nécessite une importante consommation d’énergie électrique", "Il repose sur la compétition entre les mineurs pour proposer le prochain bloc"], answer: [0,2,3]},
+      {question: "Quels facteurs peuvent influencer le prix du bitcoin sur les marchés ?", options: ["L’offre et la demande sur les plateformes d’échange", "Les politiques monétaires des banques centrales", "L’actualité médiatique autour du bitcoin", "Le stock mondial d’or disponible"], answer: [0,1,2]},
+      {question: "Quelles sont les critiques courantes formulées à l’égard de Bitcoin ?", options: ["Sa consommation énergétique élevée", "Sa lenteur pour effectuer des micropaiements", "Son extrême centralisation autour d’une poignée d’acteurs", "La forte volatilité de son prix"], answer: [0,1,3]}
     ];
 
     const form = document.getElementById("quizForm");
@@ -113,7 +138,7 @@
       const container = document.createElement("div");
       container.className = "question";
       const title = document.createElement("p");
-      title.textContent = (index + 1) + ". " + q.question;
+      title.innerHTML = (q.question.includes("section-title") ? q.question : (index + 1) + ". " + q.question);
       container.appendChild(title);
 
       const answersDiv = document.createElement("div");
@@ -159,7 +184,7 @@
         if (isCorrect) {
           score++;
         } else {
-          feedback += `<div class='question'><strong>${index + 1}. ${q.question}</strong><br>`;
+          feedback += `<div class='question'><strong>${index + 1}. ${q.question.replace(/<[^>]+>/g, '')}</strong><br>`;
           feedback += `<div class='incorrect'>Votre réponse : ${selected.map(i => q.options[i] || "(non répondu)").join(', ')}</div>`;
           feedback += `<div class='correct'>Bonne réponse : ${correct.map(i => q.options[i]).join(', ')}</div></div>`;
         }
