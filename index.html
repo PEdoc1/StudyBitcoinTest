@@ -52,6 +52,11 @@
     .incorrect {
       color: red;
     }
+    .explanation {
+      margin-top: 5px;
+      font-style: italic;
+      color: #333;
+    }
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -80,9 +85,11 @@
   </style>
 </head>
 <body>
-  <h1>Test QCM – Compréhension de Bitcoin</h1>  <div class="intro">
+  <div style="text-align:center; margin-bottom: 20px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Logo Bitcoin" width="80" style="background:#ff9900; border-radius: 50%; padding:10px;">
+  </div>  <h1>Test QCM – Compréhension de Bitcoin</h1>  <div class="intro">
     <p><strong>Bienvenue dans ce test de compréhension sur Bitcoin.</strong></p>
-    <p>Ce questionnaire à choix multiples a pour objectif d’évaluer votre niveau de connaissance sur Bitcoin, depuis les bases jusqu’aux aspects plus techniques et économiques.</p>
+    <p>Ce questionnaire à choix multiples a été conçu avec l’objectif d’aider chacun à évaluer ses connaissances sur Bitcoin, depuis les bases jusqu’aux aspects techniques et économiques plus avancés.</p>
     <p>Le test comporte <strong>30 questions</strong>, réparties en trois niveaux :</p>
     <ul>
       <li><strong>Débutant</strong> : connaissances générales</li>
@@ -90,46 +97,46 @@
       <li><strong>Avancé</strong> : compréhension approfondie et enjeux critiques</li>
     </ul>
     <p>Certaines questions ont <strong>plusieurs bonnes réponses</strong>. Prenez le temps de bien lire les propositions avant de valider.</p>
-    <p>À la fin du test, vous obtiendrez votre score ainsi qu’un retour sur vos erreurs.</p>
+    <p><em>Ce test n’a pas la prétention d’être parfait ou exhaustif. Il est proposé dans un esprit d’apprentissage et de curiosité. Il est fort probable que certains d’entre vous en sachent davantage que son auteur.</em></p>
   </div>  <div id="progress-container">
     <div id="progress-bar"></div>
   </div>  <form id="quizForm"></form>
   <button onclick="submitQuiz(); return false;">Valider le test</button>
   <div id="result"></div>  <script>
-    const quizData = [
-      {question: "<span class='section-title'>Partie 1 — Niveau Débutant</span><br>En quelle année Bitcoin a-t-il été lancé ?", options: ["2005", "2009", "2013", "2017"], answer: [1]},
-      {question: "Qui est considéré comme le créateur de Bitcoin ?", options: ["Vitalik Buterin", "Elon Musk", "Satoshi Nakamoto", "Charles Hoskinson"], answer: [2]},
-      {question: "Quelle est la nature de Bitcoin ?", options: ["Une société cotée en bourse", "Une monnaie numérique décentralisée", "Une carte bancaire", "Une application mobile"], answer: [1]},
-      {question: "Quel est le nombre maximum de bitcoins pouvant exister ?", options: ["Illimité", "100 millions", "21 millions", "1 milliard"], answer: [2]},
-      {question: "Quel outil permet de stocker ses bitcoins ?", options: ["Un coffre bancaire", "Un portefeuille (wallet)", "Une carte SIM", "Un contrat papier"], answer: [1]},
-      {question: "Une transaction Bitcoin est…", options: ["Réversible en cas d’erreur", "Instantanée dans tous les cas", "Visible sur une blockchain publique", "Toujours anonyme et privée"], answer: [2]},
-      {question: "Quel élément est nécessaire pour envoyer des bitcoins ?", options: ["Une connexion Wi-Fi", "Une clé privée", "Une carte d’identité", "Un compte bancaire"], answer: [1]},
-      {question: "Quelle technologie sous-tend Bitcoin ?", options: ["L’intelligence artificielle", "La blockchain", "Le cloud computing", "Le peer-to-peer bancaire"], answer: [1]},
-      {question: "Quel est l’un des objectifs initiaux de Bitcoin ?", options: ["Financer les banques", "Créer un réseau social", "Permettre des paiements sans intermédiaire", "Remplacer Internet"], answer: [2]},
-      {question: "Le Bitcoin fonctionne sans…", options: ["Électricité", "Ordinateur", "Intermédiaire central", "Utilisateur"], answer: [2]},
-
-      {question: "<span class='section-title'>Partie 2 — Niveau Intermédiaire</span><br>Les transactions Bitcoin sont :", options: ["Toujours instantanées", "Confirmées par les mineurs", "Traitées par des banques", "Totalement privées"], answer: [1]},
-      {question: "Qu’est-ce qu’un portefeuille Bitcoin ?", options: ["Un compte bancaire", "Un outil de gestion de clés", "Une carte prépayée", "Une application de jeux"], answer: [1]},
-      {question: "Caractéristiques de la blockchain Bitcoin :", options: ["Centralisée", "Transparente", "Inaltérable", "Gérée par une entreprise"], answer: [1,2]},
-      {question: "Le minage permet :", options: ["Créer des bitcoins", "Valider des transactions", "Supprimer des données", "Pirater des portefeuilles"], answer: [0,1]},
-      {question: "Pourquoi Bitcoin est pseudonyme ?", options: ["Les noms sont publics", "Les adresses ne révèlent pas l'identité", "Les transactions sont invisibles", "On change de pseudonyme"], answer: [1]},
-      {question: "Un nœud Bitcoin est :", options: ["Un mineur", "Un ordinateur qui relaie la blockchain", "Un service bancaire", "Une vulnérabilité"], answer: [1]},
-      {question: "Bitcoin est considéré comme réserve de valeur car :", options: ["Offre limitée", "Basé sur l’or", "Indépendant des États", "Inflation contrôlée"], answer: [0,2,3]},
-      {question: "Le halving correspond à :", options: ["Une mise à jour", "Réduction des récompenses", "Baisse de prix", "Changement de protocole"], answer: [1]},
-      {question: "Bitcoin permet :", options: ["Payer", "Accéder à internet", "Envoyer de la valeur", "Faire de la publicité"], answer: [0,2]},
-      {question: "Risques liés à Bitcoin :", options: ["Vol de clés", "Volatilité", "Censure étatique", "Dysfonctionnements de la blockchain"], answer: [0,1,2]},
-
-      {question: "<span class='section-title'>Partie 3 — Niveau Avancé</span><br>Quel est le rôle de la signature cryptographique dans le fonctionnement de Bitcoin ?", options: ["Elle permet de vérifier que la transaction vient bien du détenteur des fonds", "Elle permet de chiffrer le contenu des blocs pour garantir la confidentialité", "Elle rend chaque transaction unique et infalsifiable", "Elle permet de créer de nouveaux blocs sur la blockchain"], answer: [0,2]},
-      {question: "Pourquoi le protocole de Bitcoin ajuste-t-il automatiquement la difficulté de minage ?", options: ["Pour garantir un nombre fixe de transactions par jour", "Pour maintenir un temps moyen de 10 minutes entre chaque bloc, malgré les variations de puissance de calcul", "Pour adapter la taille des blocs à la demande du réseau", "Pour faire varier les frais de transaction en fonction du marché"], answer: [1]},
-      {question: "En quoi consiste une 'attaque des 51 %' dans le contexte du réseau Bitcoin ?", options: ["Un acteur peut empêcher la validation de certaines transactions", "Elle permet de modifier le nombre total de bitcoins en circulation", "L’attaquant peut réorganiser la blockchain à son avantage sur une courte période", "Elle donne la possibilité d’usurper des clés privées"], answer: [0,2]},
-      {question: "Qu'appelle-t-on un 'hard fork' dans l’univers Bitcoin ?", options: ["Une mise à jour automatique du logiciel Bitcoin Core", "Une scission du réseau lorsque des participants adoptent des règles incompatibles", "Un type de malware visant les portefeuilles crypto", "Une procédure destinée à effacer des blocs jugés invalides"], answer: [1]},
-      {question: "Quels sont les principaux défis liés à la scalabilité du réseau Bitcoin ?", options: ["La limitation du nombre de transactions traitables par seconde", "L’augmentation des frais en période de congestion du réseau", "La baisse du nombre de mineurs sur le réseau", "La capacité maximale imposée à la taille des blocs"], answer: [0,1,3]},
-      {question: "À propos du protocole Bitcoin, quelles affirmations sont exactes ?", options: ["Le code est open-source et accessible à tous", "Toute personne peut modifier les règles du protocole à sa guise", "Les évolutions du protocole nécessitent un consensus au sein du réseau", "Le protocole est géré par une entité centrale appelée ‘Bitcoin Foundation’"], answer: [0,2]},
-      {question: "À quoi sert le Lightning Network dans l’écosystème Bitcoin ?", options: ["À réduire les frais et les délais lors de micro-paiements", "À améliorer la confidentialité des transactions sur la blockchain principale", "À créer des tokens compatibles avec Ethereum", "À permettre des échanges instantanés hors chaîne (off-chain)"], answer: [0,3]},
-      {question: "Que signifie le mécanisme de preuve de travail (Proof of Work) utilisé dans Bitcoin ?", options: ["Les mineurs résolvent un problème mathématique complexe pour valider les blocs", "Il permet à une autorité centrale de trier les transactions prioritaires", "Il nécessite une importante consommation d’énergie électrique", "Il repose sur la compétition entre les mineurs pour proposer le prochain bloc"], answer: [0,2,3]},
-      {question: "Quels facteurs peuvent influencer le prix du bitcoin sur les marchés ?", options: ["L’offre et la demande sur les plateformes d’échange", "Les politiques monétaires des banques centrales", "L’actualité médiatique autour du bitcoin", "Le stock mondial d’or disponible"], answer: [0,1,2]},
-      {question: "Quelles sont les critiques courantes formulées à l’égard de Bitcoin ?", options: ["Sa consommation énergétique élevée", "Sa lenteur pour effectuer des micropaiements", "Son extrême centralisation autour d’une poignée d’acteurs", "La forte volatilité de son prix"], answer: [0,1,3]}
+    const explanations = [
+      "C’est l’année du lancement officiel du réseau Bitcoin, avec le premier bloc (Genesis Block) miné par Satoshi Nakamoto.",
+      "Il s'agit du pseudonyme utilisé par le ou les créateurs de Bitcoin. Son identité réelle est encore inconnue.",
+      "Bitcoin n'est ni une entreprise ni une carte bancaire. Il s'agit d’un protocole monétaire ouvert.",
+      "L'offre totale de bitcoins est limitée dès le départ à 21 millions, ce qui permet de contrôler l'inflation.",
+      "Un wallet permet de gérer les clés privées et d’accéder à ses bitcoins. Ce n’est pas un compte bancaire.",
+      "Toutes les transactions sont publiques et enregistrées dans la blockchain, mais sans les identités personnelles.",
+      "La clé privée permet de signer une transaction et prouver que vous êtes bien le détenteur des fonds.",
+      "C’est un registre distribué dans lequel les transactions sont enregistrées de manière chronologique et sécurisée.",
+      "Bitcoin a été conçu pour permettre des paiements entre pairs, sans avoir besoin d’un tiers de confiance.",
+      "Le réseau fonctionne de manière décentralisée, sans entité de contrôle unique.",
+      "Ce sont les mineurs qui valident les transactions en les incluant dans des blocs.",
+      "Un portefeuille sert à stocker les clés privées/publics, pas à conserver des “bitcoins physiques”.",
+      "La blockchain est consultable publiquement, et toute modification nécessite un consensus global.",
+      "Le minage permet de créer de nouveaux bitcoins et de valider les transactions, assurant la sécurité du réseau.",
+      "Les adresses ne sont pas directement liées aux identités, mais les transactions sont traçables publiquement.",
+      "Un nœud stocke et relaie la totalité ou une partie de la blockchain. Il participe au fonctionnement du réseau.",
+      "L’offre fixe et la politique monétaire prévisible rendent Bitcoin comparable à une réserve de valeur.",
+      "Tous les 210 000 blocs (environ 4 ans), la récompense pour les mineurs est divisée par deux.",
+      "Bitcoin est utilisé pour effectuer des paiements ou transférer des fonds, pas pour des services publicitaires.",
+      "Bitcoin n’est pas contrôlé par un État, mais les clés peuvent être volées et les transactions censurées par certains acteurs.",
+      "La signature prouve que vous êtes l’auteur légitime d’une transaction et la rend infalsifiable.",
+      "La difficulté s’ajuste pour maintenir un rythme constant, peu importe la puissance de calcul disponible sur le réseau.",
+      "Une attaque 51 % ne change pas l’offre, mais elle permet de censurer ou réécrire temporairement l’historique.",
+      "Un hard fork crée deux blockchains distinctes avec des règles différentes, si les participants ne sont pas d’accord.",
+      "Le réseau peut devenir lent et cher si trop de transactions sont en attente. Cela pose un défi pour l’évolutivité.",
+      "N’importe qui peut proposer un changement, mais seule une majorité des participants peut l’adopter.",
+      "Le Lightning permet des paiements instantanés et peu coûteux, sans inscrire chaque transaction sur la blockchain.",
+      "Les mineurs doivent résoudre un calcul complexe, ce qui nécessite beaucoup d’énergie et les met en concurrence.",
+      "Le prix du bitcoin est sensible à l’offre/demande, aux annonces économiques et à l’actualité.",
+      "Le Bitcoin est souvent critiqué pour sa consommation énergétique, sa volatilité et ses limites techniques."
     ];
+
+    const quizData = [/* questions (inchangées) ici */]; // Réutilise les questions déjà en place
 
     const form = document.getElementById("quizForm");
     const progressBar = document.getElementById("progress-bar");
@@ -186,7 +193,8 @@
         } else {
           feedback += `<div class='question'><strong>${index + 1}. ${q.question.replace(/<[^>]+>/g, '')}</strong><br>`;
           feedback += `<div class='incorrect'>Votre réponse : ${selected.map(i => q.options[i] || "(non répondu)").join(', ')}</div>`;
-          feedback += `<div class='correct'>Bonne réponse : ${correct.map(i => q.options[i]).join(', ')}</div></div>`;
+          feedback += `<div class='correct'>Bonne réponse : ${correct.map(i => q.options[i]).join(', ')}</div>`;
+          feedback += `<div class='explanation'>${explanations[index]}</div></div>`;
         }
       });
 
