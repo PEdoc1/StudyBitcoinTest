@@ -10,6 +10,16 @@
             background-color: #f7f9fc;
             color: #333;
         }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            width: 100px;
+        }
+        .header h1 {
+            color: #CC9900;
+        }
         .question {
             background-color: #fff;
             padding: 20px;
@@ -27,10 +37,7 @@
             display: block;
             margin-bottom: 8px;
         }
-        .answers input[type="radio"] {
-            margin-right: 10px;
-        }
-        .answers input[type="checkbox"] {
+        .answers input[type="radio"], .answers input[type="checkbox"] {
             margin-right: 10px;
         }
         #validate-button {
@@ -38,7 +45,7 @@
             width: 100%;
             padding: 10px;
             font-size: 16px;
-            background-color: #007bff;
+            background-color: #CC9900;
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -46,7 +53,7 @@
             transition: background-color 0.3s;
         }
         #validate-button:hover {
-            background-color: #0056b3;
+            background-color: #b38600;
         }
         .explanation {
             margin-top: 10px;
@@ -66,15 +73,64 @@
             font-weight: bold;
             margin-top: 20px;
         }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .progress-bar-inner {
+            height: 24px;
+            background-color: #CC9900;
+            width: 0%;
+            border-radius: 8px;
+            transition: width 0.3s;
+        }
+        #suggestions {
+            margin-top: 20px;
+        }
+        #suggestions textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        #suggestions button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #CC9900;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #suggestions button:hover {
+            background-color: #b38600;
+        }
     </style>
 </head>
 <body>
-    <h1>QCM sur Bitcoin</h1>
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin Logo">
+        <h1>STUDY BITCOIN</h1>
+    </div>
+    <div class="progress-bar">
+        <div class="progress-bar-inner" id="progress-bar-inner"></div>
+    </div>
     <form id="qcm-form">
         <!-- Questions will be inserted here by JavaScript -->
     </form>
     <button id="validate-button" style="display: none;" onclick="validateAnswers()">Valider</button>
     <div id="score"></div>
+    <div id="suggestions">
+        <h2>Suggestions ou Questions</h2>
+        <textarea placeholder="Écrivez vos suggestions ou questions ici..."></textarea>
+        <button>Envoyer</button>
+    </div>
 
     <script>
         const questions = [
@@ -261,6 +317,7 @@
         ];
 
         const form = document.getElementById('qcm-form');
+        const progressBarInner = document.getElementById('progress-bar-inner');
 
         questions.forEach((q, index) => {
             const questionDiv = document.createElement('div');
@@ -271,51 +328,4 @@
             answersDiv.className = 'answers';
 
             q.options.forEach((option, i) => {
-                const inputType = q.correct.length > 1 ? 'checkbox' : 'radio';
-                const label = document.createElement('label');
-                label.innerHTML = `<input type="${inputType}" name="question${index}" value="${i}"> ${option}`;
-                answersDiv.appendChild(label);
-                answersDiv.appendChild(document.createElement('br'));
-            });
-
-            questionDiv.appendChild(answersDiv);
-            form.appendChild(questionDiv);
-        });
-
-        form.addEventListener('change', () => {
-            const allAnswered = questions.every((q, index) => {
-                if (q.correct.length > 1) {
-                    return Array.from(form[`question${index}`]).some(input => input.checked);
-                } else {
-                    return form[`question${index}`].value !== '';
-                }
-            });
-            document.getElementById('validate-button').style.display = allAnswered ? 'block' : 'none';
-        });
-
-        function validateAnswers() {
-            let score = 0;
-            questions.forEach((q, index) => {
-                const userAnswers = form[`question${index}`];
-                const explanation = document.createElement('p');
-                explanation.className = 'explanation';
-                explanation.innerText = q.explanation;
-
-                const userAnswerValues = Array.from(userAnswers).filter(input => input.checked).map(input => parseInt(input.value));
-                const isCorrect = q.correct.every(correctAnswer => userAnswerValues.includes(correctAnswer)) && userAnswerValues.length === q.correct.length;
-
-                if (isCorrect) {
-                    score++;
-                    explanation.classList.add('correct');
-                    explanation.innerHTML = `<strong>CORRECT !</strong> ${q.explanation}`;
-                } else {
-                    explanation.classList.add('incorrect');
-                    explanation.innerHTML = `<strong>MAUVAISE REPONSE !</strong> ${q.explanation}`;
-                }
-                form.children[index].appendChild(explanation);
-            });
-            document.getElementById('score').innerText = `Votre score: ${score}/${questions.length}`;
-        }
-    </script>
-</body>
-</html>
+                const inputType = q.correct.length > 1 ? 'checkbox
