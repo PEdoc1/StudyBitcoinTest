@@ -322,10 +322,4 @@
         questions.forEach((q, index) => {
             const questionDiv = document.createElement('div');
             questionDiv.className = 'question';
-            questionDiv.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
-
-            const answersDiv = document.createElement('div');
-            answersDiv.className = 'answers';
-
-            q.options.forEach((option, i) => {
-                const inputType = q.correct.length > 1 ? 'checkbox
+            questionDiv.innerHTML = `<p>${index + 1}. ${q.question}</p>
