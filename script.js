@@ -182,4 +182,27 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     ];
 
-    const form = document
+    const form = document.getElementById('qcm-form');
+    const progressBarInner = document.getElementById('progress-bar-inner');
+
+    questions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question';
+        questionDiv.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+
+        const answersDiv = document.createElement('div');
+        answersDiv.className = 'answers';
+
+        q.options.forEach((option, i) => {
+            const inputType = q.correct.length > 1 ? 'checkbox' : 'radio';
+            const label = document.createElement('label');
+            label.innerHTML = `<input type="${inputType}" name="question${index}" value="${i}"> ${option}`;
+            answersDiv.appendChild(label);
+            answersDiv.appendChild(document.createElement('br'));
+        });
+
+        questionDiv.appendChild(answersDiv);
+        form.appendChild(questionDiv);
+    });
+
+    form.addEventListener('change
