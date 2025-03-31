@@ -27,7 +27,10 @@
             display: block;
             margin-bottom: 8px;
         }
-        .answers input {
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        .answers input[type="checkbox"] {
             margin-right: 10px;
         }
         #validate-button {
@@ -78,73 +81,73 @@
             {
                 question: "En quelle année le réseau Bitcoin a-t-il été mis en service ?",
                 options: ["2005", "2009", "2013", "2017"],
-                correct: 1,
+                correct: [1],
                 explanation: "C’est l’année du lancement officiel du réseau Bitcoin, avec le premier bloc (Genesis Block) miné par Satoshi Nakamoto."
             },
             {
                 question: "Quel pseudonyme est associé à la création de Bitcoin ?",
                 options: ["Vitalik Buterin", "Elon Musk", "Satoshi Nakamoto", "Charles Hoskinson"],
-                correct: 2,
+                correct: [2],
                 explanation: "Il s'agit du pseudonyme utilisé par le ou les créateurs de Bitcoin. Son identité réelle est encore inconnue."
             },
             {
                 question: "Parmi les choix suivants, que représente Bitcoin ?",
                 options: ["Une entreprise cotée en bourse", "Une monnaie numérique décentralisée", "Une carte bancaire", "Un logiciel de paiement mobile"],
-                correct: 1,
+                correct: [1],
                 explanation: "Bitcoin n'est ni une entreprise ni une carte bancaire. Il s'agit d’un protocole monétaire ouvert."
             },
             {
                 question: "Combien de bitcoins pourront être créés au maximum ?",
                 options: ["Un milliard", "100 millions", "21 millions", "Illimité"],
-                correct: 2,
+                correct: [2],
                 explanation: "L'offre totale de bitcoins est limitée dès le départ à 21 millions, ce qui permet de contrôler l'inflation."
             },
             {
                 question: "Quel outil est utilisé pour conserver ses bitcoins ?",
                 options: ["Une carte SIM", "Un portefeuille numérique (wallet)", "Un compte bancaire", "Un mot de passe"],
-                correct: 1,
+                correct: [1],
                 explanation: "Un wallet permet de gérer les clés privées et d’accéder à ses bitcoins. Ce n’est pas un compte bancaire."
             },
             {
                 question: "Quelle caractéristique est vraie concernant les transactions Bitcoin ?",
                 options: ["Elles sont réversibles en cas d’erreur", "Elles sont toujours anonymes", "Elles sont enregistrées publiquement sur la blockchain", "Elles nécessitent une validation par une banque"],
-                correct: 2,
+                correct: [2],
                 explanation: "Toutes les transactions sont publiques et enregistrées dans la blockchain, mais sans les identités personnelles."
             },
             {
                 question: "Quel élément est indispensable pour autoriser l’envoi de bitcoins ?",
                 options: ["Un identifiant personnel", "Une carte d’identité", "Une clé privée", "Un numéro de compte"],
-                correct: 2,
+                correct: [2],
                 explanation: "La clé privée permet de signer une transaction et prouver que vous êtes bien le détenteur des fonds."
             },
             {
                 question: "Quelle technologie est au cœur du fonctionnement de Bitcoin ?",
                 options: ["L’intelligence artificielle", "La blockchain", "Le cloud computing", "La biométrie"],
-                correct: 1,
+                correct: [1],
                 explanation: "C’est un registre distribué dans lequel les transactions sont enregistrées de manière chronologique et sécurisée."
             },
             {
                 question: "Quel était l’un des objectifs de Bitcoin à sa création ?",
                 options: ["Financer les banques centrales", "Créer un réseau social sécurisé", "Permettre des paiements sans tiers de confiance", "Remplacer entièrement le système bancaire"],
-                correct: 2,
+                correct: [2],
                 explanation: "Bitcoin a été conçu pour permettre des paiements entre pairs, sans avoir besoin d’un tiers de confiance."
             },
             {
                 question: "Le réseau Bitcoin peut fonctionner sans…",
                 options: ["Internet", "Ordinateurs", "Intermédiaire centralisé", "Logiciel open-source"],
-                correct: 2,
+                correct: [2],
                 explanation: "Le réseau fonctionne de manière décentralisée, sans entité de contrôle unique."
             },
             {
                 question: "Comment les transactions Bitcoin sont-elles validées ?",
                 options: ["Par une banque centrale", "Par les utilisateurs votants", "Par les mineurs du réseau", "Par une autorité réglementaire"],
-                correct: 2,
+                correct: [2],
                 explanation: "Ce sont les mineurs qui valident les transactions en les incluant dans des blocs."
             },
             {
                 question: "Qu’est-ce qu’un portefeuille Bitcoin (wallet) ?",
                 options: ["Une carte prépayée contenant des bitcoins", "Un compte bancaire associé à une crypto", "Un outil pour gérer ses clés cryptographiques", "Une plateforme d’échange réglementée"],
-                correct: 2,
+                correct: [2],
                 explanation: "Un portefeuille sert à stocker les clés privées/publics, pas à conserver des “bitcoins physiques”."
             },
             {
@@ -156,19 +159,19 @@
             {
                 question: "Quel est le rôle principal du minage dans Bitcoin ?",
                 options: ["Créer de nouveaux tokens et les vendre", "Gérer les portefeuilles utilisateurs", "Valider et sécuriser les transactions", "Effacer les données obsolètes"],
-                correct: 2,
+                correct: [2],
                 explanation: "Le minage permet de créer de nouveaux bitcoins tout en validant et sécurisant les transactions du réseau."
             },
             {
                 question: "Pourquoi dit-on que Bitcoin est pseudonyme et non anonyme ?",
                 options: ["Parce que toutes les adresses sont vérifiées par KYC", "Parce que chaque adresse est liée à un nom réel", "Parce que les identités ne sont pas directement visibles, mais les transactions sont publiques", "Parce que chaque utilisateur a un pseudonyme affiché dans la blockchain"],
-                correct: 2,
+                correct: [2],
                 explanation: "Les adresses Bitcoin ne sont pas directement liées à une identité, mais les flux sont publics et traçables."
             },
             {
                 question: "Quel est le rôle d’un “nœud” dans le réseau Bitcoin ?",
                 options: ["C’est une unité de stockage pour les portefeuilles", "C’est un point du réseau qui valide et relaie les blocs et transactions", "C’est un utilisateur vérifié par une autorité centrale", "C’est un protocole d’échange de données"],
-                correct: 1,
+                correct: [1],
                 explanation: "Un nœud conserve une copie de la blockchain, valide les blocs et relaye les transactions."
             },
             {
@@ -180,7 +183,7 @@
             {
                 question: "Que désigne le terme “halving” dans Bitcoin ?",
                 options: ["Une division du réseau en deux chaînes", "Une réduction périodique des récompenses de minage", "Une perte de valeur de moitié", "Un changement de gouvernance"],
-                correct: 1,
+                correct: [1],
                 explanation: "Tous les 210 000 blocs, la récompense attribuée aux mineurs est divisée par deux."
             },
             {
@@ -204,7 +207,7 @@
             {
                 question: "Pourquoi le protocole de Bitcoin ajuste-t-il automatiquement la difficulté de minage ?",
                 options: ["Pour garantir un nombre fixe de transactions par jour", "Pour maintenir un temps moyen de 10 minutes entre chaque bloc, malgré les variations de puissance de calcul", "Pour adapter la taille des blocs à la demande du réseau", "Pour faire varier les frais de transaction en fonction du marché"],
-                correct: 1,
+                correct: [1],
                 explanation: "La difficulté s’ajuste pour maintenir un rythme constant, peu importe la puissance de calcul disponible sur le réseau."
             },
             {
@@ -216,7 +219,7 @@
             {
                 question: "Qu'appelle-t-on un “hard fork” dans l’univers Bitcoin ?",
                 options: ["Une mise à jour automatique du logiciel Bitcoin Core", "Une scission du réseau lorsque des participants adoptent des règles incompatibles", "Un type de malware visant les portefeuilles crypto", "Une procédure destinée à effacer des blocs jugés invalides"],
-                correct: 1,
+                correct: [1],
                 explanation: "Un hard fork crée deux blockchains distinctes avec des règles différentes, si les participants ne sont pas d’accord."
             },
             {
@@ -268,8 +271,9 @@
             answersDiv.className = 'answers';
 
             q.options.forEach((option, i) => {
+                const inputType = q.correct.length > 1 ? 'checkbox' : 'radio';
                 const label = document.createElement('label');
-                label.innerHTML = `<input type="radio" name="question${index}" value="${i}"> ${option}`;
+                label.innerHTML = `<input type="${inputType}" name="question${index}" value="${i}"> ${option}`;
                 answersDiv.appendChild(label);
                 answersDiv.appendChild(document.createElement('br'));
             });
@@ -279,8 +283,12 @@
         });
 
         form.addEventListener('change', () => {
-            const allAnswered = questions.every((_, index) => {
-                return form[`question${index}`].value !== '';
+            const allAnswered = questions.every((q, index) => {
+                if (q.correct.length > 1) {
+                    return Array.from(form[`question${index}`]).some(input => input.checked);
+                } else {
+                    return form[`question${index}`].value !== '';
+                }
             });
             document.getElementById('validate-button').style.display = allAnswered ? 'block' : 'none';
         });
@@ -288,11 +296,15 @@
         function validateAnswers() {
             let score = 0;
             questions.forEach((q, index) => {
-                const userAnswer = form[`question${index}`].value;
+                const userAnswers = form[`question${index}`];
                 const explanation = document.createElement('p');
                 explanation.className = 'explanation';
                 explanation.innerText = q.explanation;
-                if (parseInt(userAnswer) === q.correct) {
+
+                const userAnswerValues = Array.from(userAnswers).filter(input => input.checked).map(input => parseInt(input.value));
+                const isCorrect = q.correct.every(correctAnswer => userAnswerValues.includes(correctAnswer)) && userAnswerValues.length === q.correct.length;
+
+                if (isCorrect) {
                     score++;
                     explanation.classList.add('correct');
                     explanation.innerHTML = `<strong>CORRECT !</strong> ${q.explanation}`;
