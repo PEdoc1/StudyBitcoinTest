@@ -7,12 +7,61 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #f7f9fc;
+            color: #333;
         }
         .question {
+            background-color: #fff;
+            padding: 20px;
             margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .answers {
+            margin-top: 10px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 8px;
         }
         .answers input {
             margin-right: 10px;
+        }
+        #validate-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #validate-button:hover {
+            background-color: #0056b3;
+        }
+        .explanation {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        #score {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -22,7 +71,7 @@
         <!-- Questions will be inserted here by JavaScript -->
     </form>
     <button id="validate-button" style="display: none;" onclick="validateAnswers()">Valider</button>
-    <div id="score" style="margin-top: 20px;"></div>
+    <div id="score"></div>
 
     <script>
         const questions = [
@@ -241,12 +290,15 @@
             questions.forEach((q, index) => {
                 const userAnswer = form[`question${index}`].value;
                 const explanation = document.createElement('p');
+                explanation.className = 'explanation';
                 explanation.innerText = q.explanation;
                 if (parseInt(userAnswer) === q.correct) {
                     score++;
-                    explanation.style.color = 'green';
+                    explanation.classList.add('correct');
+                    explanation.innerHTML = `<strong>CORRECT !</strong> ${q.explanation}`;
                 } else {
-                    explanation.style.color = 'red';
+                    explanation.classList.add('incorrect');
+                    explanation.innerHTML = `<strong>MAUVAISE REPONSE !</strong> ${q.explanation}`;
                 }
                 form.children[index].appendChild(explanation);
             });
